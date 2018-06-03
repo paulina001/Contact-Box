@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div><a href="{{ path('contactbox_contact_showall') }}" class="btn btn-md">Back</a></div>
+    <h2> Edit contact </h2><br>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input class="btn btn-primary" type="submit" value="Edit">
+    {{ form_end(form) }}
+    <br>
+    <a href="{{ path('contactbox_address_addaddress', {'id': contact.id }) }}" class="btn btn-primary">Add address</a>
+    <a href="{{ path('contactbox_phone_addphone', {'id': contact.id }) }}" class="btn btn-primary">Add phone</a>
+    <a href="{{ path('contactbox_email_addemail', {'id': contact.id }) }}" class="btn btn-primary">Add email</a>
+{% endblock %}

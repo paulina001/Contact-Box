@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <a href="{{ path('contactbox_contact_new') }}"  class="btn btn-primary"> Add new contact</a>
+    <h2>All contacts:</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Surname </th>
+                <th> Name </th>
+                <th> Options </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td><a href="{{ path('contactbox_contact_show', {'id': contact.id }) }}"> {{ contact.surname }}</a></td>
+                    <td><a href="{{ path('contactbox_contact_show', {'id': contact.id }) }}"> {{ contact.name }} </a></td>
+                    <td>
+                        <a href="{{ path('contactbox_contact_modify', {'id': contact.id }) }}"  class="btn btn-primary">Edit</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('contactbox_contact_delete', {'id': contact.id }) }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

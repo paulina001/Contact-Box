@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <div><a href="{{ path('contactbox_contact_showall') }}">Back</a></div>
+        <h3 class="show"> Contact details:</h3>
+        <table class="table">
+            <tr>
+                <th>Name:</th>
+                <td>{{ contact.name }}</td>
+            </tr>
+            <tr>
+                <th>Surname:</th>
+                <td>{{ contact.surname }}</td>
+            </tr>
+            <tr>
+                <th>Description:</th>
+                <td>{{ contact.description }}</td>
+            </tr>
+        </table>
+
+        <h3 class="show"> Address:</h3>
+        <table class="table">
+            {% if contact.addresses.count > 0 %}
+                {% for address in contact.addresses %}
+                    <tr>
+                        <th>Address:</th>
+                        <td> {{ address.city }}, ul.  {{ address.street }} {{ address.houseNumber }} / {{ address.flatNumber }}</td>
+                        <td>
+                            <a href="{{ path('contactbox_address_modifyaddress', {'id': address.id }) }}"  class="btn btn-primary">Edit</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('contactbox_address_deleteaddress', {'id': address.id }) }}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <th>Address:</th>
+                    <td> </td>
+                </tr>
+            {% endif %}
+        </table>
+
+        <h3 class="show"> Phones:</h3>
+        <table class="table">
+            {% if contact.phones.count > 0 %}
+                {% for phone in contact.phones %}
+                    <tr>
+                        <th>Phone number (type) :</th>
+                        <td> {{ phone.number }} ({{ phone.type }})</td>
+                        <td>
+                            <a href="{{ path('contactbox_phone_modifyphone', {'id': phone.id }) }}"  class="btn btn-primary">Edit</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('contactbox_phone_deletephone', {'id': phone.id }) }}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <th>Phone number (type) :</th>
+                    <td> </td>
+                </tr>
+            {% endif %}
+        </table>
+
+        <h3 class="show"> Emails:</h3>
+        <table class="table">
+            {% if contact.emails.count > 0 %}
+                {% for email in contact.emails %}
+                    <tr>
+                        <th>Email address (type):</th>
+                        <td> {{ email.email }} ( {{ email.type }} )</td>
+                        <td>
+                            <a href="{{ path('contactbox_email_modifyemail', {'id': email.id }) }}"  class="btn btn-primary">Edit</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('contactbox_email_deleteemail', {'id': email.id }) }}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <th>Email address (type):</th>
+                    <td> </td>
+                </tr>
+            {% endif %}
+        </table>
+{% endblock %}
+

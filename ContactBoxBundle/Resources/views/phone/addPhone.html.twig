@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <p><h2> Add address </h2></p><br>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="btn btn-primary" type="submit" value="Add">
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

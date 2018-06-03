@@ -1,0 +1,323 @@
+<?php
+
+namespace ContactBoxBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Contact
+ *
+ * @ORM\Table(name="contact")
+ * @ORM\Entity(repositoryClass="ContactBoxBundle\Repository\ContactRepository")
+ */
+class Contact
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="surname", type="string", length=255)
+     */
+    private $surname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ContactBoxBundle\Entity\Address", mappedBy="contact", cascade={"remove"})
+     */
+    private $addresses;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ContactBoxBundle\Entity\Email", mappedBy="contact", cascade={"remove"})
+     */
+    private $emails;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ContactBoxBundle\Entity\Phone", mappedBy="contact", cascade={"remove"})
+     */
+    private $phones;
+
+    public function __construct()
+    {
+        $this->addresses = new ArrayCollection();
+        $this->emails = new ArrayCollection();
+        $this->phones = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Contact
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set surname
+     *
+     * @param string $surname
+     *
+     * @return Contact
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * Get surname
+     *
+     * @return string
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Contact
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Add address
+     *
+     * @param \ContactBoxBundle\Entity\Address $address
+     *
+     * @return Contact
+     */
+    public function addAddresses(\ContactBoxBundle\Entity\Address $address)
+    {
+        $this->addresses[] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Remove address
+     *
+     * @param \ContactBoxBundle\Entity\Address $address
+     */
+    public function removeAddresses(\ContactBoxBundle\Entity\Address $address)
+    {
+        $this->addresses->removeElement($address);
+    }
+
+    /**
+     * Get address
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
+
+    /**
+     * Add email
+     *
+     * @param \ContactBoxBundle\Entity\Email $email
+     *
+     * @return Contact
+     */
+    public function addEmails(\ContactBoxBundle\Entity\Email $email)
+    {
+        $this->emails[] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Remove email
+     *
+     * @param \ContactBoxBundle\Entity\Email $email
+     */
+    public function removeEmails(\ContactBoxBundle\Entity\Email $email)
+    {
+        $this->emails->removeElement($email);
+    }
+
+    /**
+     * Get email
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEmails()
+    {
+        return $this->emails;
+    }
+
+    /**
+     * Add phone
+     *
+     * @param \ContactBoxBundle\Entity\Phone $phone
+     *
+     * @return Contact
+     */
+    public function addPhones(\ContactBoxBundle\Entity\Phone $phone)
+    {
+        $this->phones[] = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Remove phone
+     *
+     * @param \ContactBoxBundle\Entity\Phone $phone
+     */
+    public function removePhones(\ContactBoxBundle\Entity\Phone $phone)
+    {
+        $this->phones->removeElement($phone);
+    }
+
+    /**
+     * Get phone
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPhones()
+    {
+        return $this->phones;
+    }
+
+    /**
+     * Add address
+     *
+     * @param \ContactBoxBundle\Entity\Address $address
+     *
+     * @return Contact
+     */
+    public function addAddress(\ContactBoxBundle\Entity\Address $address)
+    {
+        $this->addresses[] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Remove address
+     *
+     * @param \ContactBoxBundle\Entity\Address $address
+     */
+    public function removeAddress(\ContactBoxBundle\Entity\Address $address)
+    {
+        $this->addresses->removeElement($address);
+    }
+
+    /**
+     * Add email
+     *
+     * @param \ContactBoxBundle\Entity\Email $email
+     *
+     * @return Contact
+     */
+    public function addEmail(\ContactBoxBundle\Entity\Email $email)
+    {
+        $this->emails[] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Remove email
+     *
+     * @param \ContactBoxBundle\Entity\Email $email
+     */
+    public function removeEmail(\ContactBoxBundle\Entity\Email $email)
+    {
+        $this->emails->removeElement($email);
+    }
+
+    /**
+     * Add phone
+     *
+     * @param \ContactBoxBundle\Entity\Phone $phone
+     *
+     * @return Contact
+     */
+    public function addPhone(\ContactBoxBundle\Entity\Phone $phone)
+    {
+        $this->phones[] = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Remove phone
+     *
+     * @param \ContactBoxBundle\Entity\Phone $phone
+     */
+    public function removePhone(\ContactBoxBundle\Entity\Phone $phone)
+    {
+        $this->phones->removeElement($phone);
+    }
+}
